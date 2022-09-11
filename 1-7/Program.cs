@@ -1,32 +1,20 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 
 class Program
 {
-    class countDownWrapper
+    private static async Task CountDown()
     {
-        public AutoResetEvent Done = new AutoResetEvent(false);
-        private int count = 9;
-        public void CountDown()
+        for (int i = 9; i >= 0; i--)
         {
-            Console.WriteLine(count--);
-            if (count >= 0)
-            {
-                Task.Delay(1000).ContinueWith((c) => { CountDown(); });
-            }
-            else
-            {
-                Done.Set();
-            }
+            Console.WriteLine(i);
+            await Task.Delay(1000);
         }
     }
     static void Main(string[] args)
     {
-        var a = new countDownWrapper();
-        var b = new countDownWrapper();
-        a.CountDown();
-        b.CountDown();
-        AutoResetEvent.WaitAll(new[] { a.Done, b.Done });
+        var a = CountDown();
+        var b = CountDown();
+        Task.WaitAll(a, b);
     }
 }
