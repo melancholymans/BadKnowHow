@@ -28,7 +28,7 @@ class Program
         int sum = 0;
         foreach (dynamic item in list)
         {
-            sum += item.Females;
+            sum += item.Males;
         }
         Console.WriteLine("Males in ship are " + sum);
     }
