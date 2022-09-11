@@ -1,15 +1,17 @@
 ﻿using System;
-class Submarine
+class BaseShip
 {
-    public int Males { get; private set; }
+    public int Males { get; protected set; }
+}
+class Submarine:BaseShip
+{
     public Submarine(int n)
     {
         Males = n;
     }
 }
-class Cruiser
+class Cruiser:BaseShip
 {
-    public int Males { get; private set; }
     public int Females { get; private set; }
     public Cruiser(int m,int f)
     {
@@ -22,7 +24,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        object[] list = { new Submarine(30), new Cruiser(10, 20) };
+        BaseShip[] list = { new Submarine(30), new Cruiser(10, 20) };
         int sum = 0;
         foreach (dynamic item in list)
         {
