@@ -12,9 +12,10 @@ class Program
             return true;
         });
         var start=DateTime.Now;
-        for(int i = 0; i < heavyQuery.Count(); i++)
+
+        foreach(var item in heavyQuery)
         {
-            Console.WriteLine(heavyQuery.ElementAt(i));
+            Console.WriteLine(heavyQuery.ElementAt(item));
         }
         Console.WriteLine("所要時間: {0}",DateTime.Now-start);
     }
